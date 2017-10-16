@@ -1,0 +1,43 @@
+<md-content md-theme="docs-dark" layout-padding layout="row" layout-align="center">
+    <div class="container">
+        <h2>Simplify your links</h2>
+
+        <form name="shortenerForm">
+            <md-input-container class="original-url-input">
+                <label>Original URL</label>
+                <input maxlength="1000" ng-model="$ctrl.originalUrl">
+            </md-input-container>
+
+            <span>
+                <md-button
+                    ng-disabled="$ctrl.shorteningUrl || !$ctrl.originalUrl.length || shortenerForm.$invalid"
+                    ng-click="$ctrl.shortenUrlButtonClicked()">
+                    {{$ctrl.shorteningUrl ? 'Shortening...' : 'Shorten URL'}}
+                </md-button>
+            </span>
+        </div>
+    </div>
+</md-content>
+
+<div layout-padding layout="row" layout-align="center">
+    <div class="container">
+        <md-card ng-if="!$ctrl.items.length">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">No URLs has being shortened so far</span>
+                    <span class="md-subhead">Fill "Original URL" text box and press "Shorten URL" button to shorten URL</span>
+                </md-card-title-text>
+            </md-card-title>
+        </md-card>
+
+        <st-url-list
+            ng-if="$ctrl.items.length"
+            items="$ctrl.items"
+            items-per-page="$ctrl.itemsPerPage"
+            current-page="$ctrl.currentPage"
+            total-number-of-items="$ctrl.totalNumberOfItems"
+            progress="$ctrl.itemsLoadingProgress"
+            on-paginate="$ctrl.changePage"
+        ></st-url-list>
+    </div>
+</div>
