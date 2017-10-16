@@ -12,7 +12,7 @@ cd ..
 
 Create database:
 ```
-psql -U <username> -a -f ./server/sql/create-db.sql
+psql -U <username> -h <host> -a -f ./server/sql/create-db.sql
 ```
 
 Change database connection string and application port in `server/src/config/index.js`.
